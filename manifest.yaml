@@ -8,7 +8,7 @@ metadata:
     io.portainer.kubernetes.application.owner: admin
     io.portainer.kubernetes.application.stack: mediaManagement
     io.portainer.kubernetes.application.stackid: '5'
-    app: sonarr
+    app: media
 spec:
   selector:
     matchLabels:
@@ -29,7 +29,7 @@ spec:
         io.portainer.kubernetes.application.owner: admin
         io.portainer.kubernetes.application.stack: mediaManagement
         io.portainer.kubernetes.application.stackid: '5'
-        app: sonarr
+        app: media
         octopusexport: OctopusExport
     spec:
       dnsPolicy: ClusterFirst
