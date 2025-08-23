@@ -53,7 +53,7 @@ spec:
             - name: TZ
               value: Etc/UTC
             - name: AUTO_UPDATE
-              value: true
+              value: 'true'
           volumeMounts:
             - name: app-config
               mountPath: /config
