@@ -26,3 +26,13 @@ spec:
             name: radarr
             port:
               number: 7878
+  - host: "jackett2.nevarez.cloud"
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: jackett
+            port:
+              number: 9117

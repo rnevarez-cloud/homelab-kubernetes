@@ -1,0 +1,32 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    io.portainer.kubernetes.application.kind: content
+    io.portainer.kubernetes.application.name: jackett
+    io.portainer.kubernetes.application.owner: admin
+    io.portainer.kubernetes.application.stack: jackett
+    io.portainer.kubernetes.application.stackid: "3"
+  name: jackett
+  namespace: default
+  uid: 8b950832-c987-4dda-a627-70065e012b9e
+spec:
+  clusterIP: 10.43.58.78
+  clusterIPs:
+    - 10.43.58.78
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+    - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+    - name: port-0
+      port: 9117
+      protocol: TCP
+      targetPort: 9117
+  selector:
+    app: jackett
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}
