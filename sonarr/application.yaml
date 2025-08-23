@@ -44,9 +44,8 @@ spec:
             path: /volume1/plex/tv_shows/
             server: 192.168.1.136
         - name: app-config
-          nfs:
-            path: /volume1/k3s/
-            server: 192.168.1.136
+          hostPath: 
+            path: /k3s/
       containers:
         - name: sonarr
           image: linuxserver/sonarr
