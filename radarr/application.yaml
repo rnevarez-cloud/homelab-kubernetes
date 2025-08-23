@@ -6,7 +6,7 @@ metadata:
     io.portainer.kubernetes.application.kind: content
     io.portainer.kubernetes.application.name: radarr
     io.portainer.kubernetes.application.owner: admin
-    io.portainer.kubernetes.application.stack: mediaManagement
+    io.portainer.kubernetes.application.stack: radarr
     io.portainer.kubernetes.application.stackid: '5'
     app: radarr
 spec:
@@ -27,7 +27,7 @@ spec:
         io.portainer.kubernetes.application.kind: content
         io.portainer.kubernetes.application.name: radarr
         io.portainer.kubernetes.application.owner: admin
-        io.portainer.kubernetes.application.stack: mediaManagement
+        io.portainer.kubernetes.application.stack: radarr
         io.portainer.kubernetes.application.stackid: '5'
         app: radarr
         octopusexport: OctopusExport
