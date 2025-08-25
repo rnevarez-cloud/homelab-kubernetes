@@ -6,6 +6,7 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: caddy
 spec:
+  ingressClassName: caddy
   rules:
   - host: "sonarr-k3s.nevarez.cloud"
     http:
