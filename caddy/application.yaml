@@ -37,7 +37,7 @@ spec:
       volumes:
         - name: app-config
           nfs:
-            path: /k3s/
+            path: /volume1/k3s/
             server: 192.168.1.136
       containers:
         - name: caddy
