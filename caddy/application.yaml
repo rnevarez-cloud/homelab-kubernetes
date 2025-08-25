@@ -52,5 +52,5 @@ spec:
               value: '1000'
           volumeMounts:
             - name: app-config
-              mountPath: /etc/caddy
+              mountPath: /etc/caddy/
               subPath: caddy
