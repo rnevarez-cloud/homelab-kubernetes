@@ -12,21 +12,12 @@ metadata:
   namespace: default
   uid: 8b950832-c987-4dda-a627-70065e012b9e
 spec:
-  clusterIP: 10.43.58.78
-  clusterIPs:
-    - 10.43.58.78
-  internalTrafficPolicy: Cluster
-  ipFamilies:
-    - IPv4
-  ipFamilyPolicy: SingleStack
   ports:
-    - name: port-0
-      port: 9117
-      protocol: TCP
+    - port: 9117
       targetPort: 9117
+      nodePort: 30017
   selector:
     app: jackett
-  sessionAffinity: None
-  type: ClusterIP
+  type: NodePort
 status:
   loadBalancer: {}

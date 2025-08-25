@@ -12,21 +12,12 @@ metadata:
   namespace: default
   uid: 8b950832-c987-4dda-a627-70065e012b9e
 spec:
-  clusterIP: 10.43.58.76
-  clusterIPs:
-    - 10.43.58.76
-  internalTrafficPolicy: Cluster
-  ipFamilies:
-    - IPv4
-  ipFamilyPolicy: SingleStack
   ports:
-    - name: port-0
-      port: 8989
-      protocol: TCP
+    - port: 8989
       targetPort: 8989
+      nodePort: 30089
   selector:
     app: sonarr
-  sessionAffinity: None
-  type: ClusterIP
+  type: NodePort
 status:
   loadBalancer: {}
