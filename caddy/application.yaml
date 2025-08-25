@@ -35,7 +35,7 @@ spec:
       dnsPolicy: ClusterFirst
       terminationGracePeriodSeconds: 30
       volumes:
-        - name: downloads
+        - name: app-config
           nfs:
             path: /k3s/
             server: 192.168.1.136
