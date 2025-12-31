@@ -1,0 +1,71 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bazarr
+  labels:
+    io.portainer.kubernetes.application.kind: content
+    io.portainer.kubernetes.application.name: bazarr
+    io.portainer.kubernetes.application.owner: admin
+    io.portainer.kubernetes.application.stack: bazarr
+    io.portainer.kubernetes.application.stackid: '5'
+    app: bazarr
+spec:
+  selector:
+    matchLabels:
+      octopusexport: OctopusExport
+  revisionHistoryLimit: 10
+  replicas: 1
+  progressDeadlineSeconds: 600
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 100%
+      maxSurge: 0
+  template:
+    metadata:
+      labels:
+        io.portainer.kubernetes.application.kind: content
+        io.portainer.kubernetes.application.name: bazarr
+        io.portainer.kubernetes.application.owner: admin
+        io.portainer.kubernetes.application.stack: bazarr
+        io.portainer.kubernetes.application.stackid: '5'
+        app: bazarr
+        octopusexport: OctopusExport
+    spec:
+      dnsPolicy: ClusterFirst
+      terminationGracePeriodSeconds: 30
+      volumes:
+        - name: movies
+          nfs:
+            path: /volume1/plex/movies/
+            server: 192.168.1.136
+        - name: tv-shows
+          nfs:
+            path: /volume1/plex/tv_shows/
+            server: 192.168.1.136
+        - name: app-config
+          hostPath: 
+            path: /k3s/
+      containers:
+        - name: bazarr
+          image: linuxserver/bazarr
+          imagePullPolicy: Always
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          env:
+            - name: PUID
+              value: '1000'
+            - name: PGID
+              value: '1000'
+            - name: TZ
+              value: Etc/UTC
+          volumeMounts:
+            - name: app-config
+              mountPath: /config
+              subPath: bazarr
+            - name: movies
+              mountPath: /movies
+              subPath: ''
+            - name: tv-shows
+              mountPath: /tv_shows
+              subPath: ''

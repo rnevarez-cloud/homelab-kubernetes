@@ -36,3 +36,13 @@ spec:
             name: jackett
             port:
               number: 9117
+  - host: "bazarr-k3s.nevarez.cloud"
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: bazarr
+            port:
+              number: 6767
