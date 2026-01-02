@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tidarr
+  labels:
+    io.portainer.kubernetes.application.kind: content
+    io.portainer.kubernetes.application.name: tidarr
+    io.portainer.kubernetes.application.owner: admin
+    io.portainer.kubernetes.application.stack: tidarr
+    io.portainer.kubernetes.application.stackid: '5'
+    app: tidarr
+spec:
+  selector:
+    matchLabels:
+      octopusexport: OctopusExport
+  revisionHistoryLimit: 10
+  replicas: 1
+  progressDeadlineSeconds: 600
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 100%
+      maxSurge: 0
+  template:
+    metadata:
+      labels:
+        io.portainer.kubernetes.application.kind: content
+        io.portainer.kubernetes.application.name: tidarr
+        io.portainer.kubernetes.application.owner: admin
+        io.portainer.kubernetes.application.stack: tidarr
+        io.portainer.kubernetes.application.stackid: '5'
+        app: tidarr
+        octopusexport: OctopusExport
+    spec:
+      dnsPolicy: ClusterFirst
+      terminationGracePeriodSeconds: 30
+      volumes:
+        - name: music
+          nfs:
+            path: /volume1/plex/music/
+            server: 192.168.1.136
+        - name: app-config
+          hostPath: 
+            path: /k3s/
+      containers:
+        - name: tidarr
+          image: cstaelen/tidarr
+          imagePullPolicy: Always
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          env:
+            - name: PUID
+              value: '1000'
+            - name: PGID
+              value: '1000'
+            - name: TZ
+              value: Etc/UTC
+            - name: ENABLE_HISTORY
+              value: 'true'
+            - name: PLEX_URL
+              value: https://plex.nevarez.cloud/
+            - name: PLEX_TOKEN
+              value: H-z1ypZzJRYhiQvbDaTZ
+            - name: PLEX_LIBRARY
+              value: '3'
+          volumeMounts:
+            - name: app-config
+              mountPath: /config
+              subPath: tidarr
+            - name: music
+              mountPath: /music
+              subPath: ''
