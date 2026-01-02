@@ -40,8 +40,9 @@ spec:
             path: /volume1/plex/music/
             server: 192.168.1.136
         - name: app-config
-          hostPath: 
-            path: /k3s/
+          nfs: 
+            path: /volume1/k3s/tidarr/
+            server: 192.168.1.136
       containers:
         - name: tidarr
           image: cstaelen/tidarr
@@ -65,8 +66,8 @@ spec:
               value: '3'
           volumeMounts:
             - name: app-config
-              mountPath: /config
-              subPath: tidarr
+              mountPath: /shared
+              subPath: ''
             - name: music
               mountPath: /music
               subPath: ''
